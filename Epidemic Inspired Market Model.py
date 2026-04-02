@@ -52,3 +52,15 @@ plt.title("Cumulative Exposure")
 
 plt.tight_layout()
 plt.show()
+
+S_gbm = np.zeros(N)
+S_gbm[0] = 100
+
+for t in range(1, N):
+    dW = np.sqrt(dt) * np.random.randn()
+    S_gbm[t] = S_gbm[t-1] * (1 + mu*dt + sigma*dW)
+
+plt.plot(S, label="Model")
+plt.plot(S_gbm, label="GBM")
+plt.legend()
+plt.show()
